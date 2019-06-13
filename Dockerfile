@@ -11,10 +11,7 @@ USER root
 RUN yum update -y
 
 #安装vim wget openssh-server openssh-clients
-RUN yum install -y vim
-RUN yum install -y wget
-RUN yum install -y openssh-server
-RUN yum install -y openssh-clients
+RUN yum install -y vim wget openssh-server openssh-clients
 
 #修改ssh配置
 RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
@@ -39,7 +36,6 @@ RUN wget http://apache.01link.hk/httpd/httpd-2.4.39.tar.gz
 RUN tar -zxvf httpd-2.4.39.tar.gz
 
 #编译httpd
-RUN ls -a /httpd-2.4.39/
 RUN ./httpd-2.4.39/configure --prefix=/usr/local/apache2 --enable-mods-shared=most --enable-so
 RUN make && make install
 
